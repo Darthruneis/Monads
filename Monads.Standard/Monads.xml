@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Monads</name>
+    </assembly>
+    <members>
+        <member name="T:Monads.Factor">
+            <summary>
+            A standardized method of defining a multiplier.
+            </summary>
+        </member>
+        <member name="P:Monads.Factor.Rate">
+            <summary>
+            The rate of the factor. e.g. the multiplier.
+            </summary>
+        </member>
+        <member name="M:Monads.Factor.#ctor(System.Double)">
+            <summary>
+            Creates a factor from a double.
+            </summary>
+            <param name="rate">The rate of the factor.</param>
+        </member>
+        <member name="M:Monads.Factor.#ctor(System.Int32)">
+            <summary>
+            Creates a factor from an int.
+            </summary>
+            <param name="rate">The rate of the factor.</param>
+        </member>
+        <member name="M:Monads.Factor.#ctor(System.Int64)">
+            <summary>
+            Creates a factor from a long.
+            </summary>
+            <param name="rate">The rate of the factor.</param>
+        </member>
+        <member name="M:Monads.Factor.#ctor(System.Decimal)">
+            <summary>
+            Creates a factor from a decimal.
+            </summary>
+            <param name="rate">The rate of the factor.</param>
+        </member>
+        <member name="P:Monads.Factor.Zero">
+            <summary>
+            A factor of zero.
+            </summary>
+        </member>
+        <member name="P:Monads.Factor.One">
+            <summary>
+            A factor of one.
+            </summary>
+        </member>
+        <member name="M:Monads.Factor.Equals(Monads.Factor)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Monads.Factor.CompareTo(Monads.Factor)">
+            <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object. </summary>
+            <param name="other">An object to compare with this instance. </param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order. </returns>
+        </member>
+        <member name="M:Monads.Factor.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <param name="obj">The object to compare with the current object. </param>
+            <returns>
+            <see langword="true" /> if the specified object  is equal to the current object; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Monads.Factor.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="M:Monads.Factor.op_LessThan(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is less than the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Factor.op_GreaterThan(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is greater than the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Factor.op_LessThanOrEqual(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is less than or equal to the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Factor.op_GreaterThanOrEqual(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is greater than or equal to the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Factor.op_Equality(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is equal to the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Factor.op_Inequality(Monads.Factor,Monads.Factor)">
+            <summary>
+            Compares two factors to determine if the left factor is not equal to the right factor.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Monads.Maybe`1">
+            <summary>
+            A wrapper for an object that might be null.
+            </summary>
+            <typeparam name="T">The type of object that may be contained inside the wrapper.</typeparam>
+        </member>
+        <member name="P:Monads.Maybe`1.Value">
+            <summary>
+            The value of the maybe.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">If the maybe does not have a value.</exception>
+        </member>
+        <member name="P:Monads.Maybe`1.HasValue">
+            <summary>
+            Whether or not the maybe has been created with a value.
+            </summary>
+        </member>
+        <member name="P:Monads.Maybe`1.HasNoValue">
+            <summary>
+            Whether or not the maybe has been created without a value. Inverse of <see cref="P:Monads.Maybe`1.HasValue"/>.
+            </summary>
+        </member>
+        <member name="M:Monads.Maybe`1.Create(`0)">
+            <summary>
+            Creates a maybe with a value.
+            </summary>
+            <param name="value">The value for the maybe.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Maybe`1.Empty">
+            <summary>
+            Creates a maybe without a value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Maybe`1.op_Implicit(`0)~Monads.Maybe{`0}">
+            <summary>
+            Allows all values to be cast as a Maybe, for example from a call to FirstOrDefault().
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Monads.Probability.Equals(Monads.Probability)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Monads.Probability.CompareTo(Monads.Probability)">
+            <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object. </summary>
+            <param name="other">An object to compare with this instance. </param>
+            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order. </returns>
+        </member>
+        <member name="T:Monads.Result">
+            <summary>
+            Defines a result of an operation.
+            </summary>
+        </member>
+        <member name="P:Monads.Result.IsSuccess">
+            <summary>
+            Indicates whether the operation was successful.
+            </summary>
+        </member>
+        <member name="P:Monads.Result.IsFailure">
+            <summary>
+            Indicates whether the operation was unsuccessful. Inverse of <see cref="P:Monads.Result.IsSuccess"/>.
+            </summary>
+        </member>
+        <member name="P:Monads.Result.Error">
+            <summary>
+            A general error message about the operation in the case of an unsuccessful operation.
+            </summary>
+        </member>
+        <member name="P:Monads.Result.ErrorMessages">
+            <summary>
+            Detailed error messages about the operation, generally intended to point to specific
+            relevant keys about the operation (such as a property name that was invalid, for example).
+            </summary>
+        </member>
+        <member name="M:Monads.Result.#ctor">
+            <summary>
+            Default constructor. Creates a success result.
+            </summary>
+        </member>
+        <member name="M:Monads.Result.#ctor(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Constructor for failure results with an optional set of detailed error messages.
+            </summary>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+        </member>
+        <member name="M:Monads.Result.Ok">
+            <summary>
+            Creates a successful result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result.Fail(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Creates an unsuccessful result with the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result.op_Implicit(System.Boolean)~Monads.Result">
+            <summary>
+            Allows a bool to be cast as a result with a catch-all error message for false.
+            </summary>
+            <param name="isSuccess"></param>
+        </member>
+        <member name="M:Monads.Result.Ok``1(``0)">
+            <summary>
+            Creates a successful result with a value.
+            </summary>
+            <typeparam name="T">The type of value contained in the result.</typeparam>
+            <param name="value">The value of the result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result.Fail``1(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Creates an unsuccessful result with the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <typeparam name="T">The type of value contained in the result.</typeparam>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result.Ok``2(``0)">
+            <summary>
+            Creates a successful result with a success value.
+            </summary>
+            <typeparam name="TSuccess">The type of value contained in the result on a success.</typeparam>
+            <typeparam name="TFailure">The type of value contained in the result on a failure.</typeparam>
+            <param name="successValue">The value of the result.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result.Fail``2(System.String,``1,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Creates an unsuccessful result with a failure value and the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <typeparam name="TSuccess">The type of value contained in the result on a success.</typeparam>
+            <typeparam name="TFailure">The type of value contained in the result on a failure.</typeparam>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="failureValue">The value of the result.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Monads.Result`1">
+            <summary>
+            Defines a result of an operation which also returns a value on success.
+            </summary>
+            <typeparam name="T">The type of value to include on a success.</typeparam>
+        </member>
+        <member name="P:Monads.Result`1.Value">
+            <summary>
+            The value that was returned from the operation on a success.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">If the result is a failure.</exception>
+        </member>
+        <member name="M:Monads.Result`1.#ctor(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Constructor for a failure result.
+            </summary>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+        </member>
+        <member name="M:Monads.Result`1.#ctor(`0)">
+            <summary>
+            Constructor for a success result with the specified value.
+            </summary>
+            <param name="value">The value returned by the operation.</param>
+        </member>
+        <member name="M:Monads.Result`1.Ok(`0)">
+            <summary>
+            Creates a successful result with the provided value.
+            </summary>
+            <param name="value">The value returned by the operation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result`1.Fail(System.String,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Creates an unsuccessful result with the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <param name="error"></param>
+            <param name="errorMessages"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Result`1.op_Implicit(`0)~Monads.Result{`0}">
+            <summary>
+            Allows a value to be cast as a result with a catch-all error message for null.
+            </summary>
+            <param name="value">The value of the result.</param>
+        </member>
+        <member name="T:Monads.Result`2">
+            <summary>
+            A result of an operation which returns values both on success and on failure.
+            </summary>
+            <typeparam name="TSuccess">The type of value contained in the result on a success.</typeparam>
+            <typeparam name="TFailure">The type of value contained in the result on a failure.</typeparam>
+        </member>
+        <member name="P:Monads.Result`2.SuccessValue">
+            <summary>
+            The value returned by the operation on a success.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">If the result is a failure.</exception>
+        </member>
+        <member name="P:Monads.Result`2.FailureValue">
+            <summary>
+            The value returned by the operation on a failure.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">If the result is a success.</exception>
+        </member>
+        <member name="M:Monads.Result`2.#ctor(`0)">
+            <summary>
+            Constructor for a success result with a value.
+            </summary>
+            <param name="successValue">The value returned by the operation that succeeded.</param>
+        </member>
+        <member name="M:Monads.Result`2.#ctor(System.String,`1,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Constructor for an unsuccessful result with a failure value and the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="failureValue">The value returned by the operation that failed.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+        </member>
+        <member name="M:Monads.Result`2.Ok(`0)">
+            <summary>
+            Creates a success result with a value.
+            </summary>
+            <param name="successValue">The value returned by the operation that succeeded.</param>
+        </member>
+        <member name="M:Monads.Result`2.Fail(System.String,`1,System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.ICollection{System.String}}[])">
+            <summary>
+            Creates an unsuccessful result with a failure value and the specified general error message and an optional set of detailed error messages.
+            </summary>
+            <param name="error">The general error message to use for the result.</param>
+            <param name="failureValue">The value returned by the operation that failed.</param>
+            <param name="errorMessages">Any additional, detailed error messages to include.</param>
+        </member>
+        <member name="P:Monads.Weighting.Denominator">
+            <summary>
+                The lower portion of the weighting. The 'Y' in 'X in Y chance of Z'.
+            </summary>
+        </member>
+        <member name="P:Monads.Weighting.Numerator">
+            <summary>
+                The upper portion of the weighting. The 'X' in 'X in Y chance of Z'.
+            </summary>
+        </member>
+        <member name="M:Monads.Weighting.Equals(Monads.Weighting)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+                <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
+                <see langword="false" />.
+            </returns>
+        </member>
+        <member name="M:Monads.Weighting.DetermineCommonDenominator(Monads.Weighting)">
+            <summary>
+                Finds a common denominator with the specified <see cref="T:Monads.Weighting" />.
+                This is not guaranteed to be the lowest common denominator.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Weighting.DetermineCommonDenominator(System.UInt64,System.UInt64)">
+            <summary>
+                Finds a common denominator between the two specified <see cref="T:Monads.Weighting" />s.
+                This is not guaranteed to be the lowest common denominator.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
