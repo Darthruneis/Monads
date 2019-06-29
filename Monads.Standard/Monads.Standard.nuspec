@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <!-- The identifier that must be unique within the hosting gallery -->
+    <id>Darthruneis.Monads</id>
+
+    <!-- The package version number that is used when resolving dependencies -->
+    <version>1.0.4.0</version>
+
+    <!-- Authors contain text that appears directly on the gallery -->
+    <authors>Chris Thompson</authors>
+    <title>Monads</title>
+    <owners>Darthruneis</owners>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright 2019</copyright>
+
+    <description>Contains core monad implementations including Maybe and Result for general use.</description>
+    <summary>Contains core monad implementations including Maybe and Result for general use.</summary>
+
+    <tags>utility status monad monads result probability maybe factor weighting generic</tags>
+
+    <releaseNotes>Attempted fix for Maybe when returning a value from calls to FirstOrDefault</releaseNotes>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard1.0\Monads.dll" target="lib\netstandard1.0" />
+    <file src="bin\Release\netstandard1.0\Monads.xml" target="lib\netstandard1.0" />
+  </files>
+</package>
