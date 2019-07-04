@@ -5,7 +5,7 @@
     <id>Darthruneis.Monads</id>
 
     <!-- The package version number that is used when resolving dependencies -->
-    <version>1.0.4.0</version>
+    <version>1.0.5.0</version>
 
     <!-- Authors contain text that appears directly on the gallery -->
     <authors>Chris Thompson</authors>
@@ -20,7 +20,7 @@
 
     <tags>utility status monad monads result probability maybe factor weighting generic</tags>
 
-    <releaseNotes>Bug Fix: Implicit conversion to a Maybe losing Value (ex: when returning a value from calls to FirstOrDefault)</releaseNotes>
+    <releaseNotes>Bug Fix: circular reference in Factor equality comparison operators.</releaseNotes>
   </metadata>
   <files>
     <file src="bin\Release\netstandard1.0\Monads.dll" target="lib\netstandard1.0" />
