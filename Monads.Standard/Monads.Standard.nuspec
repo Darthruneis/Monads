@@ -22,8 +22,4 @@
 
     <releaseNotes>Bug Fix: circular reference in Factor equality comparison operators.</releaseNotes>
   </metadata>
-  <files>
-    <file src="bin\Release\netstandard1.0\Monads.dll" target="lib\netstandard1.0" />
-    <file src="bin\Release\netstandard1.0\Monads.xml" target="lib\netstandard1.0" />
-  </files>
 </package>
