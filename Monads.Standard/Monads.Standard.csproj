@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>
+      netstandard1.0;netstandard1.1;netstandard1.2;netstandard1.3;netstandard1.4;netstandard1.5;netstandard1.6;netstandard2.0;netstandard2.1;netcoreapp1.0;netcoreapp1.1;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;net462;net47;net471;net472
+    </TargetFrameworks>
     <RootNamespace>Monads</RootNamespace>
     <AssemblyName>Monads</AssemblyName>
-    <Version>1.0.5-pre-0001</Version>
+    <Version>1.2.0-pre-0001</Version>
     <PackageId>Darthruneis.Monads</PackageId>
     <Authors>Chris Thompson</Authors>
     <Company />
@@ -12,7 +14,8 @@
     <Description>Contains core monad implementations including Maybe and Result for general use.</Description>
     <PackageTags>utility status monad monads result probability maybe factor weighting generic</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageReleaseNotes>Bug fix: circular reference in Factor equality comparison operators.</PackageReleaseNotes>
+    <PackageReleaseNotes>New: Attempting to support most .net versions since 4.6.
+New: readme.md</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -23,6 +26,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Chris\Documents\Visual Studio 2017\Projects\Monads\Monads.Standard\Monads.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />

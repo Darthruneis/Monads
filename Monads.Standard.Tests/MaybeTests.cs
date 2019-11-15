@@ -51,12 +51,6 @@ namespace Monads.Tests
             action.Should().NotThrow();
         }
 
-        private Maybe<T> Get<T>(T value)
-            where T: class
-        {
-            return value;
-        }
-
         [Test]
         public void FirstOrDefaultCastToMaybeShouldReturnEmptyMaybe()
         {
