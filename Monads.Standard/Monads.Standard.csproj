@@ -28,10 +28,14 @@ New: readme.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Monads.xml" />
     <None Remove="readme.md" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Monads.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
