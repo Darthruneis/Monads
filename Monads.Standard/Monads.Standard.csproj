@@ -6,7 +6,7 @@
     </TargetFrameworks>
     <RootNamespace>Monads</RootNamespace>
     <AssemblyName>Monads</AssemblyName>
-    <Version>1.2.0-pre-0001</Version>
+    <Version>1.2.0</Version>
     <PackageId>Darthruneis.Monads</PackageId>
     <Authors>Chris Thompson</Authors>
     <Company />
@@ -14,8 +14,7 @@
     <Description>Contains core monad implementations including Maybe and Result for general use.</Description>
     <PackageTags>utility status monad monads result probability maybe factor weighting generic</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageReleaseNotes>New: Attempting to support most .net versions since 4.6.
-New: readme.md</PackageReleaseNotes>
+    <PackageReleaseNotes>New: enhanced maybe with monad methods</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
