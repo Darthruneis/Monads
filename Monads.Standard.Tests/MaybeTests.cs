@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
 using FluentAssertions;
@@ -75,6 +76,7 @@ namespace Monads.Tests
 
             A.CallTo(() => mapFunction.Invoke(A<int>._)).MustNotHaveHappened();
         }
+
         [Test]
         public void MapShouldCallFunctionWhenHasValue()
         {
@@ -116,8 +118,7 @@ namespace Monads.Tests
 
             result.Should().Be(3);
         }
-
-
+        
         [Test]
         public void ApplyShouldNotCallFunctionWhenHasNoValue()
         {
@@ -185,6 +186,121 @@ namespace Monads.Tests
 
             A.CallTo(() => apply.Invoke(A<int>._))
              .MustNotHaveHappened();
+        }
+
+
+    }
+
+    [TestFixture]
+    public class MaybeEqualityTests
+    {
+        private static IEnumerable<TestCaseData> EqualsEqualityTestCases()
+        {
+            yield return new TestCaseData
+            (
+                Maybe<int>.Create(5),
+                5,
+                true
+            ).SetName("Maybe(5).Equals(5) should be true");
+            
+            yield return new TestCaseData
+            (
+                Maybe<int>.Create(5),
+                Maybe<int>.Create(5),
+                true
+            ).SetName("Maybe(5).Equals(Maybe(5)) should be true");
+
+            yield return new TestCaseData
+            (
+                Maybe<int>.Create(5),
+                Maybe<int>.Create(6),
+                false
+            ).SetName("Maybe(5).Equals(Maybe(6)) should be false");
+
+            yield return new TestCaseData
+            (
+                Maybe<int>.Create(6),
+                Maybe<int>.Create(5),
+                false
+            ).SetName("Maybe(6).Equals(Maybe(5)) should be false");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(6),
+                "5",
+                false
+            ).SetName("Maybe(5).Equals(\"5\") should be false");
+        }
+
+        [TestCaseSource(nameof(EqualsEqualityTestCases))]
+        public void EqualsEqualityShouldBeExpected <T>(Maybe<T> left, object right, bool expected)
+        {
+            var result = left.Equals(right);
+
+            result.Should().Be(expected);
+        }
+
+        private static IEnumerable<TestCaseData> MaybeEqualsMaybeTestCases()
+        {
+            yield return new TestCaseData(
+                Maybe<int>.Empty(),
+                Maybe<int>.Create(5),
+                false
+            ).SetName("Empty == Maybe(5) should be false");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(5),
+                Maybe<int>.Empty(),
+                false
+            ).SetName("Maybe(5) == Empty should be false");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(5),
+                Maybe<int>.Create(5),
+                true
+            ).SetName("Maybe(5) == Maybe(5) should be true");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(5),
+                Maybe<int>.Create(6),
+                false
+            ).SetName("Maybe(5) == Maybe(6) should be false");
+        }
+
+        [TestCaseSource(nameof(MaybeEqualsMaybeTestCases))]
+        public void EqualityOperatorShouldBeExpected <T>(Maybe<T> left, Maybe<T> right, bool expected)
+        {
+            var result = left == right;
+
+            result.Should().Be(expected);
+        }
+
+        private static IEnumerable<TestCaseData> MaybeEqualsTTestCases()
+        {
+            yield return new TestCaseData(
+                Maybe<int>.Empty(),
+                5,
+                false
+            ).SetName("Empty == 5 should be false");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(5),
+                5,
+                true
+            ).SetName("Maybe(5) == 5 should be true");
+
+            yield return new TestCaseData(
+                Maybe<int>.Create(5),
+                6,
+                false
+            ).SetName("Maybe(5) == 6 should be false");
+        }
+
+        [TestCaseSource(nameof(MaybeEqualsTTestCases))]
+        public void EqualityOperatorShouldBeExpected <T>(Maybe<T> left, T right, bool expected)
+        {
+            var result = left == right;
+
+            result.Should().Be(expected);
         }
     }
 }
