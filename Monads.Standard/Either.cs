@@ -77,39 +77,34 @@ namespace Monads
         }
 
         /// <summary>
-        /// Maps the provided <paramref name="f" /> which returns a new <see cref="Either{T,TF}" />.
+        /// Maps the either into a new either depending on whether the either
+        /// <see cref="IsRight"/> or <see cref="IsLeft"/>.
         /// </summary>
-        /// <typeparam name="T">The <typeparamref name="TSuccess"/> for the new <see cref="Either{T,TF}" />.</typeparam>
-        /// <typeparam name="TF">The <typeparamref name="TFailure"/> for the new <see cref="Either{T,TF}" /></typeparam>
-        /// <param name="f">Func which returns a new <see cref="Either{T,TF}" /> based on the state of the <see cref="Either{TSuccess,TFailure}" />.</param>
+        /// <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting Either.</typeparam>
+        /// <typeparam name="TF">The <typeparamref name="TFailure" /> for the resulting Either.</typeparam>
+        /// <param name="right">The function to be applied when the either <see cref="IsRight"/>.</param>
+        /// <param name="left">The function to be applied when the either <see cref="IsLeft"/>.</param>
         /// <returns></returns>
-        public Either<T, TF> Map<T, TF>(Func<Maybe<TSuccess>, Maybe<TFailure>, Either<T, TF>> f)
+        public Either<T, TF> Map<T, TF>(Func<TSuccess, Either<T, TF>> right, Func<TFailure, TF> left)
         {
+            if (IsLeft)
+                return Either.Left<T, TF>(left(Left));
 
-            return f(IsRight ? Right : Maybe<TSuccess>.Empty(), IsLeft ? Left : Maybe<TFailure>.Empty());
+            return right(Right);
         }
 
         /// <summary>
-        /// Chains an operation on the Either if the Either has a value. Allows a single type of
-        /// failure value to be used across many operations.
+        /// Shorthand for <see cref="Map{T,TFailure}" /> when <typeparamref name="TFailure" /> is
+        /// the same for the new either. 
         /// </summary>
-        /// <typeparam name="T">The <typeparamref name="TSuccess" /> of the new <see cref="Either{T, TFailure}" /></typeparam>
-        /// <param name="f">
-        /// Func which returns:
-        /// <list>
-        /// <li>When <see cref="IsRight" />:</li>
-        /// <li>a new <see cref="Either{T, TFailure}" /> from the <see cref="Right" /> value.</li>
-        /// <li>When <see cref="IsLeft" />:</li>
-        /// <li>The current value of <see cref="Left" />.</li>
-        /// </list>
-        /// </param>
-        /// <returns></returns>
-        public Either<T, TFailure> Chain<T>(Func<TSuccess, Either<T, TFailure>> f)
+        /// <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
+        /// <param name="right">The function to be applied when the either <see cref="IsRight"/>.</param>
+        /// <example>
+        /// Replace `.Map(rightFunc, left => left)` with `.Chain(rightFunc)`.
+        /// </example>
+        public Either<T, TFailure> Chain<T>(Func<TSuccess, Either<T, TFailure>> right)
         {
-            if (IsLeft)
-                return Either.L<T, TFailure>(Left);
-
-            return f(Right);
+            return Map(right, left => left);
         }
 
         /// <summary>

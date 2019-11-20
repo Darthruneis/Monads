@@ -46,31 +46,27 @@
             </summary>
             <param name="left"><see cref="P:Monads.Either`2.Left"/></param>
         </member>
-        <member name="M:Monads.Either`2.Map``2(System.Func{Monads.Maybe{`0},Monads.Maybe{`1},Monads.Either{``0,``1}})">
+        <member name="M:Monads.Either`2.Map``2(System.Func{`0,Monads.Either{``0,``1}},System.Func{`1,``1})">
             <summary>
-            Maps the provided <paramref name="f" /> which returns a new <see cref="T:Monads.Either`2" />.
+            Maps the either into a new either depending on whether the either
+            <see cref="P:Monads.Either`2.IsRight"/> or <see cref="P:Monads.Either`2.IsLeft"/>.
             </summary>
-            <typeparam name="T">The <typeparamref name="TSuccess"/> for the new <see cref="T:Monads.Either`2" />.</typeparam>
-            <typeparam name="TF">The <typeparamref name="TFailure"/> for the new <see cref="T:Monads.Either`2" /></typeparam>
-            <param name="f">Func which returns a new <see cref="T:Monads.Either`2" /> based on the state of the <see cref="T:Monads.Either`2" />.</param>
+            <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting Either.</typeparam>
+            <typeparam name="TF">The <typeparamref name="TFailure" /> for the resulting Either.</typeparam>
+            <param name="right">The function to be applied when the either <see cref="P:Monads.Either`2.IsRight"/>.</param>
+            <param name="left">The function to be applied when the either <see cref="P:Monads.Either`2.IsLeft"/>.</param>
             <returns></returns>
         </member>
         <member name="M:Monads.Either`2.Chain``1(System.Func{`0,Monads.Either{``0,`1}})">
             <summary>
-            Chains an operation on the Either if the Either has a value. Allows a single type of
-            failure value to be used across many operations.
+            Shorthand for <see cref="M:Monads.Either`2.Map``2(System.Func{`0,Monads.Either{``0,``1}},System.Func{`1,``1})" /> when <typeparamref name="TFailure" /> is
+            the same for the new either. 
             </summary>
-            <typeparam name="T">The <typeparamref name="TSuccess" /> of the new <see cref="T:Monads.Either`2" /></typeparam>
-            <param name="f">
-            Func which returns:
-            <list>
-            <li>When <see cref="P:Monads.Either`2.IsRight" />:</li>
-            <li>a new <see cref="T:Monads.Either`2" /> from the <see cref="P:Monads.Either`2.Right" /> value.</li>
-            <li>When <see cref="P:Monads.Either`2.IsLeft" />:</li>
-            <li>The current value of <see cref="P:Monads.Either`2.Left" />.</li>
-            </list>
-            </param>
-            <returns></returns>
+            <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
+            <param name="right">The function to be applied when the either <see cref="P:Monads.Either`2.IsRight"/>.</param>
+            <example>
+            Replace `.Map(rightFunc, left => left)` with `.Chain(rightFunc)`.
+            </example>
         </member>
         <member name="M:Monads.Either`2.Apply(System.Action{`0})">
             <summary>
