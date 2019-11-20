@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Monads
 {
@@ -105,6 +106,30 @@ namespace Monads
         public Either<T, TFailure> Chain<T>(Func<TSuccess, Either<T, TFailure>> right)
         {
             return Map(right, left => left);
+        }
+
+        /// <summary>
+        /// Shorthand for <see cref="Map{T,TFailure}" /> when <typeparamref name="TFailure" /> is
+        /// the same for the new either.
+        ///
+        /// Includes shorthand parameters for creating a Right or Left either.
+        /// </summary>
+        /// <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
+        /// <param name="right">The function to be applied when the either <see cref="IsRight"/>.</param>
+        /// <example>
+        /// <c>
+        ///     either.Chain((right, makeRight, makeLeft) => {
+        ///         var result = DoSomething();
+        ///         if(result)
+        ///             return makeRight(someSuccessValue);
+        ///
+        ///         return makeLeft(someFailureValue);
+        ///     }
+        /// </c>    
+        /// </example>
+        public Either<T, TFailure> Chain<T>(Func<TSuccess, Func<T, Either<T, TFailure>>, Func<TFailure, Either<T, TFailure>>, Either<T, TFailure>> right)
+        {
+            return Map(r => right(r, Either.Right<T, TFailure>, Either.Left<T, TFailure>), left => left);
         }
 
         /// <summary>
