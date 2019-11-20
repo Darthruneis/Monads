@@ -22,7 +22,7 @@ namespace Monads.Tests
 
             action.Should().Throw<InvalidOperationException>();
         }
-        
+
         [Test]
         public void LeftShouldThrowWhenEitherIsRight()
         {
