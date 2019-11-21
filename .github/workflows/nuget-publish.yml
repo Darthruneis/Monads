@@ -10,7 +10,7 @@ jobs:
 
     env:
       package: 
-        version: '1.3.0-pre-0000'
+        - version: '1.3.0-pre-0000'
 
     steps:
     - name: Publish to NuGet
