@@ -1,0 +1,16 @@
+name: Publish to NuGet
+
+package: 
+  version: '1.3.0-pre-0000'
+
+on: [push]
+#  release:
+#    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+    - name: Publish to NuGet
+      run: echo ./publish-nuget.ps1 -version $package.Version }} -key {{ secrets.Monads2020 }} 
