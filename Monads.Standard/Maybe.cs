@@ -6,12 +6,12 @@ namespace Monads
     /// A wrapper for an object that might be null.
     /// </summary>
     /// <typeparam name="T">The type of object that may be contained inside the wrapper.</typeparam>
-    public class Maybe <T>
+    public struct Maybe <T> : IEquatable<Maybe<T>>
     {
-        private T _value;
+        private readonly T _value;
 
         /// <summary>
-        /// The value of the maybe.
+        /// The value that may or may not be present.
         /// </summary>
         /// <exception cref="InvalidOperationException">If the maybe does not have a value.</exception>
         public T Value
@@ -19,32 +19,26 @@ namespace Monads
             get
             {
                 if (HasNoValue)
-                    throw new InvalidOperationException("Can not access the value of an empty Maybe.");
+                    throw new InvalidOperationException("Cannot access the value of an empty Maybe.");
 
                 return _value;
             }
-            private set => _value = value;
         }
 
         /// <summary>
         /// Whether or not the maybe has been created with a value.
         /// </summary>
-        public bool HasValue { get; private set; }
+        public bool HasValue { get; }
 
         /// <summary>
         /// Whether or not the maybe has been created without a value. Inverse of <see cref="HasValue"/>.
         /// </summary>
         public bool HasNoValue => !HasValue;
 
-        private Maybe()
-        {
-            HasValue = false;
-        }
-
         private Maybe(T value)
         {
             HasValue = true;
-            Value = value;
+            _value = value;
         }
 
         /// <summary>
@@ -96,5 +90,52 @@ namespace Monads
         /// </summary>
         /// <param name="value"></param>
         public static implicit operator Maybe<T> (T value) => Create(value);
+
+        public bool Equals(Maybe<T> other)
+        {
+            return (HasNoValue && other.HasNoValue) 
+                || (HasValue && other.HasValue && other == Value);
+        }
+
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+        /// <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
+        /// <param name="obj">The object to compare with the current instance. </param>
+        public override bool Equals(object obj)
+        {
+            if (obj is T t)
+                return this == t;
+
+            return obj is Maybe<T> other && Equals(other);
+        }
+
+        public static bool operator ==(Maybe<T> left, T right)
+        {
+            return left.HasValue && left.Value.Equals(right);
+        }
+
+        public static bool operator !=(Maybe<T> left, T right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(Maybe<T> left, Maybe<T> right)
+        {
+            return (left.HasNoValue && right.HasNoValue)
+                || (left.HasValue && right.HasValue &&(left == right.Value));
+        }
+
+        public static bool operator !=(Maybe<T> left, Maybe<T> right)
+        {
+            return !(left == right);
+        }
+
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        public override int GetHashCode()
+        {
+            if (HasNoValue) return default(T)?.GetHashCode() ?? 0;
+
+            return Value.GetHashCode();
+        }
     }
 }
