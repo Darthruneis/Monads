@@ -4,6 +4,7 @@ using NUnit.Framework;
 namespace Monads.Tests
 {
     [TestFixture]
+    [Ignore("Not ready yet.")]
     public class FactorTests
     {
         [TestCase(1.0, 2.0, true)]

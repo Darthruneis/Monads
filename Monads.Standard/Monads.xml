@@ -4,6 +4,133 @@
         <name>Monads</name>
     </assembly>
     <members>
+        <member name="T:Monads.Either`2">
+            <summary>
+            Contains a single value - <see cref="P:Monads.Either`2.Right"/> or
+            <cref href="Left"/>.
+            </summary>
+            <typeparam name="TSuccess"></typeparam>
+            <typeparam name="TFailure"></typeparam>
+        </member>
+        <member name="P:Monads.Either`2.Right">
+            <summary>
+            The right (happy path, correct) value. 
+            </summary> 
+        </member>
+        <member name="P:Monads.Either`2.Left">
+            <summary>
+            The left (sad path, incorrect) value.
+            </summary>
+        </member>
+        <member name="P:Monads.Either`2.IsRight">
+            <summary>
+            Indicates whether or not the <see cref="P:Monads.Either`2.Right"/> value is set.
+            </summary>
+        </member>
+        <member name="P:Monads.Either`2.IsLeft">
+            <summary>
+            Indicates whether or not the <see cref="P:Monads.Either`2.Left"/> value is set.
+            </summary>
+        </member>
+        <member name="M:Monads.Either`2.#ctor(`0)">
+            <summary>
+            Creates an <see cref="T:Monads.Either`2" /> with the
+            <see cref="P:Monads.Either`2.Right"/> value.
+            </summary>
+            <param name="right"><see cref="P:Monads.Either`2.Right"/></param>
+        </member>
+        <member name="M:Monads.Either`2.#ctor(`1)">
+            <summary>
+            Creates an <see cref="T:Monads.Either`2" /> with the
+            <see cref="P:Monads.Either`2.Left"/> value.
+            </summary>
+            <param name="left"><see cref="P:Monads.Either`2.Left"/></param>
+        </member>
+        <member name="M:Monads.Either`2.Map``2(System.Func{Monads.Maybe{`0},Monads.Maybe{`1},Monads.Either{``0,``1}})">
+            <summary>
+            Maps the provided <paramref name="f" /> which returns a new <see cref="T:Monads.Either`2" />.
+            </summary>
+            <typeparam name="T">The <typeparamref name="TSuccess"/> for the new <see cref="T:Monads.Either`2" />.</typeparam>
+            <typeparam name="TF">The <typeparamref name="TFailure"/> for the new <see cref="T:Monads.Either`2" /></typeparam>
+            <param name="f">Func which returns a new <see cref="T:Monads.Either`2" /> based on the state of the <see cref="T:Monads.Either`2" />.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Either`2.Chain``1(System.Func{`0,Monads.Either{``0,`1}})">
+            <summary>
+            Chains an operation on the Either if the Either has a value. Allows a single type of
+            failure value to be used across many operations.
+            </summary>
+            <typeparam name="T">The <typeparamref name="TSuccess" /> of the new <see cref="T:Monads.Either`2" /></typeparam>
+            <param name="f">
+            Func which returns:
+            <list>
+            <li>When <see cref="P:Monads.Either`2.IsRight" />:</li>
+            <li>a new <see cref="T:Monads.Either`2" /> from the <see cref="P:Monads.Either`2.Right" /> value.</li>
+            <li>When <see cref="P:Monads.Either`2.IsLeft" />:</li>
+            <li>The current value of <see cref="P:Monads.Either`2.Left" />.</li>
+            </list>
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Either`2.Apply(System.Action{`0})">
+            <summary>
+            Applies the provided <paramref name="action" /> when <see cref="P:Monads.Either`2.IsRight" />.
+            </summary>
+            <param name="action">The action to apply which utilizes the <see cref="P:Monads.Either`2.Right" /> value.</param>
+        </member>
+        <member name="M:Monads.Either`2.Apply(System.Action{`1})">
+            <summary>
+            Applies the provided <paramref name="action" /> when <see cref="P:Monads.Either`2.IsLeft" />.
+            </summary>
+            <param name="action">The action to apply which utilizes the <see cref="P:Monads.Either`2.Left" /> value.</param>
+        </member>
+        <member name="T:Monads.Either">
+            <summary>
+            Factory class for creating <see cref="T:Monads.Either`2" />s.
+            </summary>
+        </member>
+        <member name="M:Monads.Either.L``2(``1)">
+             <summary>
+             Creates an <see cref="T:Monads.Either`2" /> with
+             the <see cref="P:Monads.Either`2.Left"/> value.
+            
+             Alias of <see cref="M:Monads.Either.Left``2(``1)" />.
+             </summary>
+             <typeparam name="TRight"></typeparam>
+             <typeparam name="TLeft"></typeparam>
+             <param name="left"><see cref="P:Monads.Either`2.Left"/></param>
+             <returns></returns>
+        </member>
+        <member name="M:Monads.Either.Left``2(``1)">
+            <summary>
+            Creates an <see cref="T:Monads.Either`2" /> with
+            the <see cref="P:Monads.Either`2.Left"/> value.
+            </summary>
+            <typeparam name="TRight"></typeparam>
+            <typeparam name="TLeft"></typeparam>
+            <param name="left"><see cref="P:Monads.Either`2.Left"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Either.R``2(``0)">
+             <summary>
+             Creates an <see cref="T:Monads.Either`2" /> with
+             the <see cref="P:Monads.Either`2.Right"/> value.
+            
+             Alias of <see cref="M:Monads.Either.Right``2(``0)" />.
+             </summary>
+             <typeparam name="TRight"></typeparam>
+             <typeparam name="TLeft"></typeparam>
+             <param name="right"><see cref="P:Monads.Either`2.Right"/></param>
+        </member>
+        <member name="M:Monads.Either.Right``2(``0)">
+            <summary>
+            Creates an <see cref="T:Monads.Either`2" /> with
+            the <see cref="P:Monads.Either`2.Right"/> value.
+            </summary>
+            <typeparam name="TRight"></typeparam>
+            <typeparam name="TLeft"></typeparam>
+            <param name="right"><see cref="P:Monads.Either`2.Right"/></param>
+        </member>
         <member name="T:Monads.Factor">
             <summary>
             A standardized method of defining a multiplier.
@@ -125,7 +252,7 @@
         </member>
         <member name="P:Monads.Maybe`1.Value">
             <summary>
-            The value of the maybe.
+            The value that may or may not be present.
             </summary>
             <exception cref="T:System.InvalidOperationException">If the maybe does not have a value.</exception>
         </member>
@@ -138,6 +265,31 @@
             <summary>
             Whether or not the maybe has been created without a value. Inverse of <see cref="P:Monads.Maybe`1.HasValue"/>.
             </summary>
+        </member>
+        <member name="M:Monads.Maybe`1.Map``1(System.Func{`0,Monads.Maybe{``0}})">
+            <summary>
+            Calls the specified <paramref name="f"></paramref>
+            </summary>
+            <typeparam name="TResult">The type of result for the operation that will be mapped.</typeparam>
+            <param name="f">The function to call on the value when it is present.WW
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Maybe`1.Coalesce(`0)">
+            <summary>
+            Retrieves the value that is stored, or the default value
+            when no value is available.
+            </summary>
+            <param name="defaultValue">The default value to use.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Maybe`1.Apply(System.Action{`0})">
+            <summary>
+            Applies the provided <paramref name="f"/> to the <see href="Value"/>
+            when the value is present.
+            </summary>
+            <param name="f">The function to be applied if there is a value stored.</param>
+            <returns></returns>
         </member>
         <member name="M:Monads.Maybe`1.Create(`0)">
             <summary>
@@ -157,6 +309,15 @@
             Allows all values to be cast as a Maybe, for example from a call to FirstOrDefault().
             </summary>
             <param name="value"></param>
+        </member>
+        <member name="M:Monads.Maybe`1.Equals(System.Object)">
+            <summary>Indicates whether this instance and a specified object are equal.</summary>
+            <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
+            <param name="obj">The object to compare with the current instance. </param>
+        </member>
+        <member name="M:Monads.Maybe`1.GetHashCode">
+            <summary>Returns the hash code for this instance.</summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         </member>
         <member name="M:Monads.Probability.Equals(Monads.Probability)">
             <summary>Indicates whether the current object is equal to another object of the same type.</summary>

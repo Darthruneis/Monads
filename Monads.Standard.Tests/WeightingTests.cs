@@ -6,10 +6,9 @@ using NUnit.Framework;
 namespace Monads.Tests
 {
     [TestFixture]
+    [Ignore("Not ready yet.")]
     public class WeightingTests
     {
-        #region  Test Methods
-
         [TestCase(2, 4, 4)]
         [TestCase(3, 5, 15)]
         [TestCase(5, 7, 35)]
@@ -48,7 +47,5 @@ namespace Monads.Tests
             result.Numerator.Should().Be((ulong)expectedTop);
             result.Denominator.Should().Be((ulong)expectedBottom);
         }
-
-        #endregion
     }
 }
