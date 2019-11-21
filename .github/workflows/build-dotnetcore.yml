@@ -1,4 +1,4 @@
-name: .NET Core
+name: .NET Core - Build and Test
 
 on: [push]
 
@@ -13,5 +13,5 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Build with dotnet
+    - name: test with dotnet
       run: dotnet test --configuration Release
