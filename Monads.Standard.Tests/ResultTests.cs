@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace Monads.Tests
 {
     [TestFixture]
+    [Category("Unit")]
     public class ResultTests
     {
         [Test]

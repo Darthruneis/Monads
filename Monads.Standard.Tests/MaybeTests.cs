@@ -8,6 +8,7 @@ using NUnit.Framework;
 namespace Monads.Tests
 {
     [TestFixture]
+    [Category("Unit")]
     public class MaybeTests
     {
         private class FakeClass
