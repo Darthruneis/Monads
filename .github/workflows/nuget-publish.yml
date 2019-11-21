@@ -13,4 +13,4 @@ jobs:
 
     steps:
     - name: Publish to NuGet
-      run: echo "./publish-nuget.ps1 -version $env.package_version -key ${{ secrets.Monads2020 }}"
+      run: echo "./publish-nuget.ps1 -version ${{ env.package_version }} -key ${{ secrets.Monads2020 }}"
