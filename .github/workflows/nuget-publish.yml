@@ -1,9 +1,5 @@
 name: Publish to NuGet
 
-env:
-  package: 
-    version: '1.3.0-pre-0000'
-
 on: [push]
 #  release:
 #    types: [published]
@@ -11,6 +7,10 @@ on: [push]
 jobs:
   publish:
     runs-on: windows-latest
+
+    env:
+      package: 
+        version: '1.3.0-pre-0000'
 
     steps:
     - name: Publish to NuGet
