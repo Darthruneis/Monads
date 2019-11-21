@@ -55,4 +55,11 @@
     <None Include="bin\Release\Darthruneis.Monads.1.0.4.nupkg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Net.Compilers" Version="3.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
