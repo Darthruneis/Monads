@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public class SubEntityDto : DtoBase
     {
         public string Name { get; set; }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public class SubEntity : EntityBase
     {
         public string Name { get; private set; }

@@ -2,7 +2,7 @@
 using System.Linq;
 using Bogus;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public class TestService
     {
         public Either<EntityDto, string[]> AddOrUpdate(EntityDto dto)

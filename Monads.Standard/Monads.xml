@@ -65,7 +65,7 @@
             <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
             <param name="right">The function to be applied when the either <see cref="P:Monads.Either`2.IsRight"/>.</param>
             <example>
-            Replace `.Map(rightFunc, left => left)` with `.Chain(rightFunc)`.
+            Replace <c>.Map(rightFunc, left => left)</c> with <c>.Chain(rightFunc)</c>.
             </example>
         </member>
         <member name="M:Monads.Either`2.Apply(System.Action{`0})">
@@ -240,6 +240,26 @@
             <param name="right"></param>
             <returns></returns>
         </member>
+        <member name="M:Monads.Factor.op_Implicit(System.Decimal)~Monads.Factor">
+            <summary>Performs an implicit conversion from <see cref="T:System.Decimal"/> to <see cref="T:Monads.Factor"/>.</summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:Monads.Factor.op_Implicit(Monads.Factor)~System.Decimal">
+            <summary>Performs an implicit conversion from <see cref="T:Monads.Factor"/> to <see cref="T:System.Decimal"/>.</summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:Monads.Factor.op_Implicit(System.Double)~Monads.Factor">
+            <summary>Performs an implicit conversion from <see cref="T:System.Double"/> to <see cref="T:Monads.Factor"/>.</summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
+        <member name="M:Monads.Factor.op_Implicit(Monads.Factor)~System.Double">
+            <summary>Performs an implicit conversion from <see cref="T:Monads.Factor"/> to <see cref="T:System.Double"/>.</summary>
+            <param name="value">The value.</param>
+            <returns>The result of the conversion.</returns>
+        </member>
         <member name="T:Monads.Maybe`1">
             <summary>
             A wrapper for an object that might be null.
@@ -306,14 +326,86 @@
             </summary>
             <param name="value"></param>
         </member>
+        <member name="M:Monads.Maybe`1.Equals(Monads.Maybe{`0})">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        </member>
         <member name="M:Monads.Maybe`1.Equals(System.Object)">
             <summary>Indicates whether this instance and a specified object are equal.</summary>
             <returns>true if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, false. </returns>
             <param name="obj">The object to compare with the current instance. </param>
         </member>
+        <member name="M:Monads.Maybe`1.op_Equality(Monads.Maybe{`0},`0)">
+            <summary>Implements the operator ==.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Maybe`1.op_Inequality(Monads.Maybe{`0},`0)">
+            <summary>Implements the operator !=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Maybe`1.op_Equality(Monads.Maybe{`0},Monads.Maybe{`0})">
+            <summary>Implements the operator ==.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Maybe`1.op_Inequality(Monads.Maybe{`0},Monads.Maybe{`0})">
+            <summary>Implements the operator !=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
         <member name="M:Monads.Maybe`1.GetHashCode">
             <summary>Returns the hash code for this instance.</summary>
             <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="T:Monads.Probability">
+             <summary>
+             A probability represents the likelihood of something happening.
+            
+             It can range from 0 to 1.0.
+             </summary>
+             <seealso cref="T:System.IEquatable`1" />
+             <seealso cref="T:System.IComparable`1" />
+        </member>
+        <member name="P:Monads.Probability.Chance">
+            <summary>Gets the chance.</summary>
+            <value>The chance.</value>
+        </member>
+        <member name="P:Monads.Probability.Zero">
+            <summary>  A probability of zero is something that will never happen.</summary>
+            <value>The zero.</value>
+        </member>
+        <member name="P:Monads.Probability.One">
+            <summary>  A probability of one is something that will always happen.</summary>
+            <value>The one.</value>
+        </member>
+        <member name="M:Monads.Probability.Create(System.Double)">
+            <summary>Creates the specified probability.</summary>
+            <param name="chance">The probability.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Probability.Create(System.Decimal)">
+            <summary>Creates the specified probability.</summary>
+            <param name="chance">The probability.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Monads.Probability.op_Addition(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator +.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_Subtraction(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator -.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
         </member>
         <member name="M:Monads.Probability.Equals(Monads.Probability)">
             <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -325,6 +417,52 @@
             <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object. </summary>
             <param name="other">An object to compare with this instance. </param>
             <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings: Value Meaning Less than zero This instance precedes <paramref name="other" /> in the sort order.  Zero This instance occurs in the same position in the sort order as <paramref name="other" />. Greater than zero This instance follows <paramref name="other" /> in the sort order. </returns>
+        </member>
+        <member name="M:Monads.Probability.Equals(System.Object)">
+            <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.</summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Monads.Probability.GetHashCode">
+            <summary>Returns a hash code for this instance.</summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_LessThan(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator &lt;.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_GreaterThan(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator &gt;.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_LessThanOrEqual(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator &lt;=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_GreaterThanOrEqual(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator &gt;=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_Equality(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator ==.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Probability.op_Inequality(Monads.Probability,Monads.Probability)">
+            <summary>Implements the operator !=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
         </member>
         <member name="T:Monads.Result">
             <summary>
@@ -514,15 +652,26 @@
             <param name="failureValue">The value returned by the operation that failed.</param>
             <param name="errorMessages">Any additional, detailed error messages to include.</param>
         </member>
+        <member name="T:Monads.Weighting">
+            <summary>
+            A weighting represents a fraction that is used to determine the
+            impact something has relative to other <see cref="T:Monads.Weighting" />s.
+            </summary>
+            <seealso cref="T:Monads.Weighting" />
+        </member>
         <member name="P:Monads.Weighting.Denominator">
             <summary>
-                The lower portion of the weighting. The 'Y' in 'X in Y chance of Z'.
+                The lower portion of the <see cref="T:Monads.Weighting" />. The 'Y' in 'X in Y chance of Z'.
             </summary>
         </member>
         <member name="P:Monads.Weighting.Numerator">
             <summary>
-                The upper portion of the weighting. The 'X' in 'X in Y chance of Z'.
+                The upper portion of the <see cref="T:Monads.Weighting" />. The 'X' in 'X in Y chance of Z'.
             </summary>
+        </member>
+        <member name="P:Monads.Weighting.Zero">
+            <summary>A <see cref="T:Monads.Weighting" /> of zero has no impact.</summary>
+            <value>The zero.</value>
         </member>
         <member name="M:Monads.Weighting.Equals(Monads.Weighting)">
             <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -531,6 +680,26 @@
                 <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
                 <see langword="false" />.
             </returns>
+        </member>
+        <member name="M:Monads.Weighting.ToString">
+            <summary>Converts to string.</summary>
+            <returns>A <see cref="T:System.String"/> that represents this instance.</returns>
+        </member>
+        <member name="M:Monads.Weighting.Equals(System.Object)">
+            <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.</summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Monads.Weighting.GetHashCode">
+            <summary>Returns a hash code for this instance.</summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:Monads.Weighting.Create(System.UInt64,System.UInt64)">
+            <summary>Creates the specified <see cref="T:Monads.Weighting" /> based on the specified fraction.</summary>
+            <param name="numerator">The numerator.</param>
+            <param name="denominator">The denominator.</param>
+            <returns>A <see cref="T:Monads.Weighting" /> which represents the specified fraction.</returns>
         </member>
         <member name="M:Monads.Weighting.DetermineCommonDenominator(Monads.Weighting)">
             <summary>
@@ -548,6 +717,27 @@
             <param name="left"></param>
             <param name="right"></param>
             <returns></returns>
+        </member>
+        <member name="M:Monads.Weighting.Normalize(System.Collections.Generic.IList{Monads.Weighting})">
+            <summary>Normalizes the specified set of <see cref="T:Monads.Weighting" />s so that they are all built on the same denominator.</summary>
+            <param name="set">The set of <see cref="T:Monads.Weighting" />s to be normalized.</param>
+            <returns>A new set of <see cref="T:Monads.Weighting" />s which have the same denominator and the same relative <see cref="T:Monads.Weighting" /> as the originally provided set.</returns>
+        </member>
+        <member name="M:Monads.Weighting.op_Equality(Monads.Weighting,Monads.Weighting)">
+            <summary>Implements the operator ==.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Weighting.op_Inequality(Monads.Weighting,Monads.Weighting)">
+            <summary>Implements the operator !=.</summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Monads.Weighting.Simplify">
+            <summary>Simplifies this <see cref="T:Monads.Weighting" /> to the lowest common denominator.</summary>
+            <returns>A new <see cref="T:Monads.Weighting" /> with the simplified values.</returns>
         </member>
     </members>
 </doc>

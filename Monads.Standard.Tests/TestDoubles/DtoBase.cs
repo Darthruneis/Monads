@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public abstract class DtoBase
     {
         public Guid RowGuid { get; set; }
