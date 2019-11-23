@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public class EntityDto : DtoBase
     {
         public ICollection<SubEntityDto> SubEntities { get; set; }

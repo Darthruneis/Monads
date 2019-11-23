@@ -122,11 +122,25 @@ namespace Monads
         /// <param name="right"></param>
         /// <returns></returns>
         public static bool operator !=(Factor left, Factor right) => !(left == right);
-        
+
+        /// <summary>Performs an implicit conversion from <see cref="System.Decimal"/> to <see cref="Factor"/>.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The result of the conversion.</returns>
         public static implicit operator Factor(decimal value) => new Factor(value);
+
+        /// <summary>Performs an implicit conversion from <see cref="Factor"/> to <see cref="System.Decimal"/>.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The result of the conversion.</returns>
         public static implicit operator decimal(Factor value) => value.Rate;
 
+        /// <summary>Performs an implicit conversion from <see cref="System.Double"/> to <see cref="Factor"/>.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The result of the conversion.</returns>
         public static implicit operator Factor(double value) => new Factor(value);
+
+        /// <summary>Performs an implicit conversion from <see cref="Factor"/> to <see cref="System.Double"/>.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns>The result of the conversion.</returns>
         public static implicit operator double(Factor value) => (double)value.Rate;
     }
 }

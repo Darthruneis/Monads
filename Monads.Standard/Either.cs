@@ -100,7 +100,7 @@ namespace Monads
         /// <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
         /// <param name="right">The function to be applied when the either <see cref="IsRight"/>.</param>
         /// <example>
-        /// Replace `.Map(rightFunc, left => left)` with `.Chain(rightFunc)`.
+        /// Replace <c>.Map(rightFunc, left => left)</c> with <c>.Chain(rightFunc)</c>.
         /// </example>
         public Either<T, TFailure> Chain<T>(Func<TSuccess, Either<T, TFailure>> right)
         {

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public class Entity : EntityBase
     {
         public ICollection<SubEntity> SubEntities { get; private set; }
 
-        public long Id { get; private set; }
         public decimal Balance { get; private set; }
         public string Notes { get; private set; }
 

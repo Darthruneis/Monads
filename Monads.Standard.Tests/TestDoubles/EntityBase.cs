@@ -1,7 +1,7 @@
 ﻿using System;
 using Bogus;
 
-namespace Monads.Tests {
+namespace Monads.Tests.TestDoubles {
     public abstract class EntityBase
     {
         public long Id { get; protected set; }
