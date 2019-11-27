@@ -6,12 +6,12 @@
     </TargetFrameworks>
     <RootNamespace>Monads</RootNamespace>
     <AssemblyName>Monads</AssemblyName>
-    <Version>1.3.0-pre-0005</Version>
+    <Version>1.3.0-pre-0007</Version>
     <PackageId>Darthruneis.Monads</PackageId>
     <Authors>Chris Thompson</Authors>
     <Company />
     <Product />
-    <Description>Contains core monad implementations including Maybe and Result for general use.</Description>
+    <Description>Contains core monad implementations including Maybe and Either for general use.</Description>
     <PackageTags>utility status monad monads result maybe generic either</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>New: Add new Monad - 'Either'. Semi-replacement for 'Result' monad.</PackageReleaseNotes>
