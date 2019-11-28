@@ -32,5 +32,11 @@ namespace Monads.Extensions
                 ? Either.Left<TNewSuccess, TFailure>(either.Left)
                 : await right(either.Right);
         }
+
+        public static async Task<Either<TNewSuccess, TFailure>> ChainAsync<TSuccess, TFailure, TNewSuccess>(this Task<Either<TSuccess, TFailure>> @this, Func<TSuccess, Either<TNewSuccess, TFailure>> right)
+        {
+            var either = await @this;
+            return either.Chain(right);
+        }
     }
 }

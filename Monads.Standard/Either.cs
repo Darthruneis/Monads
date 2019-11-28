@@ -109,6 +109,30 @@ namespace Monads
         }
 
         /// <summary>
+        /// Shorthand for <see cref="Map{T,TFailure}" /> when <typeparamref name="TFailure" /> is
+        /// the same for the new either.
+        ///
+        /// Includes shorthand parameters for creating a Right or Left either.
+        /// </summary>
+        /// <typeparam name="T">The <typeparamref name="TSuccess" /> for the resulting either.</typeparam>
+        /// <param name="right">The function to be applied when the either <see cref="IsRight"/>.</param>
+        /// <example>
+        /// <c>
+        ///     either.Chain((right, makeRight, makeLeft) => {
+        ///         var result = DoSomething();
+        ///         if(result)
+        ///             return makeRight(someSuccessValue);
+        ///
+        ///         return makeLeft(someFailureValue);
+        ///     }
+        /// </c>    
+        /// </example>
+        public Either<T, TFailure> Chain<T>(Func<TSuccess, Func<T, Either<T, TFailure>>, Func<TFailure, Either<T, TFailure>>, Either<T, TFailure>> right)
+        {
+            return Map(r => right(r, Either.Right<T, TFailure>, Either.Left<T, TFailure>), left => left);
+        }
+
+        /// <summary>
         /// Applies the provided <paramref name="action" /> when <see cref="IsRight" />.
         /// </summary>
         /// <param name="action">The action to apply which utilizes the <see cref="Right" /> value.</param>

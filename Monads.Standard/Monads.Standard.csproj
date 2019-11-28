@@ -6,7 +6,6 @@
     </TargetFrameworks>
     <RootNamespace>Monads</RootNamespace>
     <AssemblyName>Monads</AssemblyName>
-    <Version>1.3.0-pre-0007</Version>
     <PackageId>Darthruneis.Monads</PackageId>
     <Authors>Chris Thompson</Authors>
     <Company />
@@ -20,14 +19,15 @@
     <RepositoryUrl>https://github.com/Darthruneis/Monads</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageProjectUrl>https://github.com/users/Darthruneis/projects/1</PackageProjectUrl>
+    <DocumentationFile>C:\git\Monads\Monads.Standard\Monads.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\git\Monads\Monads.Standard\Monads.xml</DocumentationFile>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\git\Monads\Monads.Standard\Monads.xml</DocumentationFile>
+    <Version>1.3.0-pre-$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</Version>
   </PropertyGroup>
 
   <ItemGroup>
