@@ -4,18 +4,25 @@ using System.Linq;
 
 namespace Monads
 {
+    /// <summary>
+    /// A weighting represents a fraction that is used to determine the
+    /// impact something has relative to other <see cref="Weighting" />s.
+    /// </summary>
+    /// <seealso cref="Weighting" />
     public class Weighting : IEquatable<Weighting>
     {
         /// <summary>
-        ///     The lower portion of the weighting. The 'Y' in 'X in Y chance of Z'.
+        ///     The lower portion of the <see cref="Weighting" />. The 'Y' in 'X in Y chance of Z'.
         /// </summary>
         public ulong Denominator { get; }
 
         /// <summary>
-        ///     The upper portion of the weighting. The 'X' in 'X in Y chance of Z'.
+        ///     The upper portion of the <see cref="Weighting" />. The 'X' in 'X in Y chance of Z'.
         /// </summary>
         public ulong Numerator { get; }
 
+        /// <summary>A <see cref="Weighting" /> of zero has no impact.</summary>
+        /// <value>The zero.</value>
         public static Weighting Zero => new Weighting(0, 1);
 
         private Weighting(ulong numerator, ulong denominator)
@@ -33,19 +40,27 @@ namespace Monads
         public bool Equals(Weighting other)
         {
             return (other != null)
-                   && Numerator.Equals(other.Numerator) && Denominator.Equals(other.Denominator);
+                && Numerator.Equals(other.Numerator) && Denominator.Equals(other.Denominator);
         }
 
+        /// <summary>Converts to string.</summary>
+        /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
         public override string ToString()
         {
             return $"{Numerator}/{Denominator}";
         }
 
+        /// <summary>Determines whether the specified <see cref="System.Object"/> is equal to this instance.</summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             return Equals(obj as Weighting);
         }
 
+        /// <summary>Returns a hash code for this instance.</summary>
+        /// <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -60,6 +75,10 @@ namespace Monads
             }
         }
 
+        /// <summary>Creates the specified <see cref="Weighting" /> based on the specified fraction.</summary>
+        /// <param name="numerator">The numerator.</param>
+        /// <param name="denominator">The denominator.</param>
+        /// <returns>A <see cref="Weighting" /> which represents the specified fraction.</returns>
         public static Result<Weighting> Create(ulong numerator, ulong denominator)
         {
             if (numerator > denominator)
@@ -113,6 +132,9 @@ namespace Monads
             return left * right;
         }
 
+        /// <summary>Normalizes the specified set of <see cref="Weighting" />s so that they are all built on the same denominator.</summary>
+        /// <param name="set">The set of <see cref="Weighting" />s to be normalized.</param>
+        /// <returns>A new set of <see cref="Weighting" />s which have the same denominator and the same relative <see cref="Weighting" /> as the originally provided set.</returns>
         public static ICollection<Weighting> Normalize(IList<Weighting> set)
         {
             if ((set == null) || (set.Count <= 1))
@@ -140,24 +162,36 @@ namespace Monads
                               }).ToList();
         }
 
+        /// <summary>Implements the operator ==.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Weighting left, Weighting right)
         {
-            return left.Equals(right);
+            return left == null 
+                ? right == null 
+                : left.Equals(right);
         }
 
+        /// <summary>Implements the operator !=.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Weighting left, Weighting right)
         {
             return !(left == right);
         }
 
+        /// <summary>Simplifies this <see cref="Weighting" /> to the lowest common denominator.</summary>
+        /// <returns>A new <see cref="Weighting" /> with the simplified values.</returns>
         public Weighting Simplify()
         {
             for (ulong i = 2; i <= Numerator; i++)
                 if ((Numerator % i == 0)
-                    && (Denominator % i == 0))
+                 && (Denominator % i == 0))
                     return new Weighting(Numerator / i, Denominator / i);
 
-            return this;
+            return new Weighting(Numerator, Denominator);
         }
     }
 }

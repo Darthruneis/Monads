@@ -8,6 +8,7 @@ using NUnit.Framework;
 namespace Monads.Tests
 {
     [TestFixture]
+    [Category("Unit")]
     public class EitherTests
     {
         [Test]
@@ -22,7 +23,7 @@ namespace Monads.Tests
 
             action.Should().Throw<InvalidOperationException>();
         }
-        
+
         [Test]
         public void LeftShouldThrowWhenEitherIsRight()
         {

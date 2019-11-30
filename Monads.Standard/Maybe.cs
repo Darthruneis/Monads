@@ -91,6 +91,9 @@ namespace Monads
         /// <param name="value"></param>
         public static implicit operator Maybe<T> (T value) => Create(value);
 
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
         public bool Equals(Maybe<T> other)
         {
             return (HasNoValue && other.HasNoValue) 
@@ -108,22 +111,38 @@ namespace Monads
             return obj is Maybe<T> other && Equals(other);
         }
 
+        /// <summary>Implements the operator ==.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Maybe<T> left, T right)
         {
             return left.HasValue && left.Value.Equals(right);
         }
 
+        /// <summary>Implements the operator !=.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Maybe<T> left, T right)
         {
             return !(left == right);
         }
 
+        /// <summary>Implements the operator ==.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Maybe<T> left, Maybe<T> right)
         {
             return (left.HasNoValue && right.HasNoValue)
                 || (left.HasValue && right.HasValue &&(left == right.Value));
         }
 
+        /// <summary>Implements the operator !=.</summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Maybe<T> left, Maybe<T> right)
         {
             return !(left == right);
